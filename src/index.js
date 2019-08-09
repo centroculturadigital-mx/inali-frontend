@@ -7,11 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 
-// import { InMemoryCache } from 'apollo-cache-inmemory'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
-// import { HttpLink } from 'apollo-link-http'
+import { HttpLink } from 'apollo-link-http'
 
-// import { ApolloLink } from 'apollo-link'
+import { ApolloLink } from 'apollo-link'
 
 // import { setContext } from 'apollo-link-context';
 
@@ -21,11 +21,17 @@ import { ApolloClient } from 'apollo-client'
 
 import { createBrowserHistory } from 'history';
 
+const http = new HttpLink({ uri:  'http://localhost:3000/graphql' })
 
 
 const client = new ApolloClient({
-    // uri: "http://138.68.209.123/graphql"
-    uri: "http://localhost/graphql"
+    link: ApolloLink.from([
+        // retryLink,
+        // authLink.concat(http),
+        http
+    ]),
+    // uri: process.env.API_URl,
+    cache: new InMemoryCache()
 });
 
 

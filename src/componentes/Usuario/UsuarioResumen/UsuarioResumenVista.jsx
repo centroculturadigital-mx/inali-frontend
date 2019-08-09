@@ -2,11 +2,14 @@ import React from 'react';
 
 import style from './UsuarioResumen.scss';
 
-const UsuarioResumenVista = () => (
+const UsuarioResumenVista = ({
+    id,
+    nombreUsuario
+}) => (
     <article class="UsuarioResumen">
         <a href="#">
             <h4>
-                Nombre completo de Usuario
+                { nombreUsuario }
             </h4>
         </a>
     </article>

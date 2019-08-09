@@ -8,7 +8,7 @@ class UsuarioResumen extends React.Component {
 
     render() {
 
-        return <UsuarioResumenVista/>
+        return <UsuarioResumenVista {...this.props}/>
 
     }
 

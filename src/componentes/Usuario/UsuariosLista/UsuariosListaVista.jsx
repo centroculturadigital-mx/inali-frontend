@@ -3,17 +3,18 @@ import React from 'react';
 import style from './UsuariosLista.scss';
 import UsuarioResumen from '../UsuarioResumen/UsuarioResumen';
 
-const UsuariosListaVista = () => (
-    <ul className="UsuariosLista">
+const UsuariosListaVista = ({usuarios}) => {
+    
+    let usuariosMostrar = usuarios.map(u => (
+        <UsuarioResumen {...u}/>
+    ))
 
-        <UsuarioResumen/>
-        <UsuarioResumen/>
-        <UsuarioResumen/>
-        <UsuarioResumen/>
-        <UsuarioResumen/>
-        <UsuarioResumen/>
+    return (
+        <ul className="UsuariosLista">
+            { usuariosMostrar }
+        </ul>
+    )
 
-    </ul>
-)
+}
 
 export default UsuariosListaVista;

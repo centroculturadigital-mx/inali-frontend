@@ -4,12 +4,10 @@ services:
 
 
   inali-frontend:
+    container_name: inali-frontend
     build: 
       context: ./
       dockerfile: ./Dockerfile.dev
-
-    expose:
-      - 3000
     ports:
       - 3000:3000
     volumes:
@@ -17,6 +15,7 @@ services:
 
 
   nginx:
+    container_name: inali-frontend-nginx
     image: nginx:1.13 # this will use the latest version of 1.13.x
     ports:
       - '80:80' # expose 80 on host and sent to 80 in container

@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Query } from 'react-apollo';
-import UsuariosLista from './componentes/Usuario/UsuariosLista/UsuariosLista';
+import FamiliasLista from './componentes/Familia/FamiliasLista/FamiliasLista';
 
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <UsuariosLista />
+      <FamiliasLista />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

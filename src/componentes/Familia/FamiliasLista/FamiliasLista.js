@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import UsuariosListaVista from './UsuariosListaVista';
-import USUARIOS from '../../../funciones/graphql/USUARIOS';
+import FamiliasListaVista from './FamiliasListaVista';
+import Familias from '../../../funciones/graphql/FAMILIAS';
 import { Query } from 'react-apollo';
 
 
 
-class UsuariosLista extends React.Component {
+class FamiliasLista extends React.Component {
 
     render() {
 
         return (
-            <Query query={USUARIOS}>
+            <Query query={Familias}>
 
             {({ loading, error, data}) => {
 
@@ -25,7 +25,7 @@ class UsuariosLista extends React.Component {
                 
                 console.log(data);
 
-                return <UsuariosListaVista usuarios={data.usuarios}/>
+                return <FamiliasListaVista Familias={data.Familias}/>
                 
             }
 
@@ -40,4 +40,4 @@ class UsuariosLista extends React.Component {
 
 }
 
-export default UsuariosLista;
+export default FamiliasLista;

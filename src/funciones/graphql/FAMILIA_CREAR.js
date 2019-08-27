@@ -3,11 +3,11 @@ import gql from "graphql-tag";
 
 export default gql`
 
-query USUARIOS {
+query Familias {
 
-    usuarios {
+    Familias {
         id
-        nombreUsuario
+        nombreFamilia
     }
 
 }

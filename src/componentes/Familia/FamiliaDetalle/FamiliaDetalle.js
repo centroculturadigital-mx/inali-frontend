@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import FamiliaDetalleVista from './FamiliaDetalleVista';
-import Familia from '../../../funciones/graphql/Familia';
+import Familia from '../../../funciones/graphql/FAMILIA';
 import { Query } from 'react-apollo';
 
 
@@ -11,27 +11,28 @@ class FamiliaDetalle extends React.Component {
     render() {
 
         return (
-            <Query query={Familias}>
+            <h2>Familia detalle</h2>
+        //     <Query query={Familias}>
 
-            {({ loading, error, data}) => {
+        //     {({ loading, error, data}) => {
 
-            if (loading)
-                return <div>Loading...</div>
+        //     if (loading)
+        //         return <div>Loading...</div>
 
-            if (error)
-                return <div>Error!</div>
+        //     if (error)
+        //         return <div>Error!</div>
             
-            if( !! data ) {
+        //     if( !! data ) {
                 
-                console.log(data);
+        //         console.log(data);
 
-                return <FamiliaDetalleVista Familias={data.Familias}/>
+        //         return <FamiliaDetalleVista Familias={data.Familias}/>
                 
-            }
+        //     }
 
-            }}
+        //     }}
 
-        </Query>
+        // </Query>
         
     )
 

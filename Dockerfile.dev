@@ -1,18 +1,12 @@
-FROM node:8 as cra-dc-build
+FROM node:11 as cra-dc-build
 
 
 ENV HOME=/src/inali-frontend
 
-COPY . $HOME
 
 WORKDIR $HOME
 
 
-#Copying package.json to Docker Image
-COPY package.json $HOME
-
-#Installing all dependencies.
-RUN npm install
 
 # Running the dev server.
 CMD ["npm", "start"]

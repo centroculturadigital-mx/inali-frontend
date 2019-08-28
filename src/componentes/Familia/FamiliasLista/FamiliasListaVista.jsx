@@ -1,20 +1,17 @@
 import React from 'react';
 
-import style from './FamiliasLista.scss';
-import FamiliaResumen from '../FamiliaResumen/FamiliaResumen';
 
-const FamiliasListaVista = ({Familias}) => {
-    
-    let FamiliasMostrar = Familias.map(u => (
-        <FamiliaResumen {...u}/>
-    ))
-
-    return (
-        <ul className="FamiliasLista">
-            { FamiliasMostrar }
-        </ul>
-    )
-
-}
+const FamiliasListaVista = ({
+    id,
+    nombreFamilia
+}) => (
+    <article class="FamiliaLista">
+        <a href="#">
+            <h4>
+                { nombreFamilia }
+            </h4>
+        </a>
+    </article>
+)
 
 export default FamiliasListaVista;

@@ -32,20 +32,35 @@ export class JPlayer extends React.Component {
     };
   }
 
+
+  audioScripts() {
+    const audioContext = new AudioContext()//cra contexto de audio
+    const audioElement = document.querySelector('.JPlayer audio')//instancia el tag audio
+    const track = audioContext.createMediaElementSource(audioElement)// pasa el tag al contexto de audio
+
+    return (String(audioContext) + ": " + JSON.stringify(audioContext))
+  }
+
   playerHTML() {
     return (
-      <div className="JPlayer">
-        {/* play/pause: */}
-        <span id="PlayToggle" />
-        {/*  track: */}
-        <span id="Timeline">
-          <span id="Loading" />
-          <span id="Handle" className="ui-slider-handle" />
-        </span>
-        <span id="TimeLeft" />
-      </div>
+      <section>
+        <h1>Player custom</h1>
+        <div className="JPlayer">
+          <audio src={ogg} type="audio/mpeg"></audio>
+          {/* play/pause: */}
+          <span id="PlayToggle" />
+          {/*  track: */}
+          <span id="Timeline">
+            <span id="Loading" />
+            <span id="Handle" className="ui-slider-handle" />
+          </span>
+          <span id="TimeLeft" />
+          {this.audioScripts()}
+        </div>
+      </section>
     )
   }
+
 
   //
   render() {

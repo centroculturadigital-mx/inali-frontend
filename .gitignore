@@ -22,3 +22,6 @@ yarn-error.log*
 
 
 .config
+
+/componentes/Audio/AudioAssets/josecaos-j71g1gj7-soundcloud.edit.mp3
+/componentes/Audio/AudioAssets/josecaos-j71g1gj7-soundcloud.edit.ogg

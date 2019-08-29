@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { Query } from 'react-apollo';
 import FamiliasLista from './componentes/Familia/FamiliasLista/FamiliasLista';
+//
+import Audio from './componentes/Audio/Audio'
 
 
 const App = () => {
@@ -12,6 +14,7 @@ const App = () => {
       <h1>
         inali-frontend
       </h1>
+      <Audio/>
     </div>
   );
 }

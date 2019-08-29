@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './FamiliaDetalle.scss';
+
 import FamiliaResumen from '../FamiliaResumen/FamiliaResumen';
 
 const FamiliaDetalleVista = ({Familias}) => {

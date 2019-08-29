@@ -5,6 +5,8 @@ import './App.css';
 import { Query } from 'react-apollo';
 import FamiliasLista from './componentes/Familia/FamiliasLista/FamiliasLista';
 import FamiliaDetalle from './componentes/Familia/FamiliaDetalle/FamiliaDetalle';
+//
+import Audio from './componentes/Audio/Audio'
 
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="/familias/:id" component={FamiliaDetalle}/>
         <Route path="/familias" component={FamiliasLista}/>
       </Switch>
+      <Audio/>
     </div>
   );
 }

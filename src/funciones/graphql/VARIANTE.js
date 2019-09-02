@@ -3,14 +3,19 @@ import gql from "graphql-tag";
 
 export default gql`
 
-query FAMILIA (
+query VARIANTE (
 		$_id: MongoID!
 ) {
-  FamiliaById (_id: $_id) {
+  VarianteById (_id: $_id) {
     nombreOriginario
     nombreCastellanizado
-    agrupaciones {
-			_id
+    agrupacion {
+      _id
+      nombreOriginario
+    	nombreCastellanizado
+    }
+    familia {
+      _id
       nombreOriginario
     	nombreCastellanizado
     }

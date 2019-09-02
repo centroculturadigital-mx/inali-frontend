@@ -1,17 +1,17 @@
 import React from 'react'
-import FamiliaDetalleVista from './FamiliaDetalleVista'
-import Familia from '../../../funciones/graphql/FAMILIA'
+import VarianteDetalleVista from './VarianteDetalleVista'
+import Variante from '../../../funciones/graphql/VARIANTE'
 import { Query } from 'react-apollo'
 
 
 
-class FamiliaDetalle extends React.Component {
+class VarianteDetalle extends React.Component {
 
 	render() {
 
 		return ( 
 
-			<Query query={Familia} variables={{_id: this.props.match.params.id}}>
+			<Query query={Variante} variables={{_id: this.props.match.params.id}}>
 
 				{
 					({loading,error,data}) => {
@@ -22,7 +22,7 @@ class FamiliaDetalle extends React.Component {
 
 						if (!!data) {
 							console.log('data', data)
-							return <FamiliaDetalleVista {...data.FamiliaById}/>
+							return <VarianteDetalleVista {...data.VarianteById}/>
 
 						}
 
@@ -38,4 +38,4 @@ class FamiliaDetalle extends React.Component {
 
 }
 
-export default FamiliaDetalle
+export default VarianteDetalle

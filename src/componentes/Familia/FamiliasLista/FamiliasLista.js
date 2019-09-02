@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import FamiliasListaVista from './FamiliasListaVista';
 import Familias from '../../../funciones/graphql/FAMILIAS';
 import { Query } from 'react-apollo';
@@ -8,36 +7,32 @@ import { Query } from 'react-apollo';
 
 class FamiliasLista extends React.Component {
 
-    render() {
+	render() {
 
-        return (
-            <h2>Familias vista</h2>
-        //     <Query query={Familias}>
+		return (
 
-        //     {({ loading, error, data}) => {
+			<Query query={Familias}>
 
-        //     if (loading)
-        //         return <div>Loading...</div>
+				{({ loading, error, data}) => {
 
-        //     if (error)
-        //         return <div>Error!</div>
-            
-        //     if( !! data ) {
-                
-        //         console.log(data);
+					if (loading) return <div>Loading...</div>
 
-        //         return <FamiliasListaVista Familias={data.Familias}/>
-                
-        //     }
+					if (error) return <div>Error!</div>
 
-        //     }}
+					if( !! data ) {
 
-        // </Query>
-        
-    )
+						return <FamiliasListaVista familias={data.FamiliaMany} />
+
+					}
+
+				}}
+
+			</Query>
+
+		)
 
 
-    }
+	}
 
 }
 

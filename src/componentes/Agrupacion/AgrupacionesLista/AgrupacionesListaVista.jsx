@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const FamiliasListaVista = ({
-	familias
+const AgrupacionesListaVista = ({
+	agrupaciones
 }) => {
-	let familiasElems = familias.map((f, i) => {
+	let agrupacionesElems = agrupaciones.map((f, i) => {
 		return (
 			<article key={i}>
-				<Link to={`/familias/${f._id}`}>
+				<Link to={`/agrupaciones/${f._id}`}>
 					<h2>
 						{ f.nombreOriginario }
 					</h2>
@@ -16,15 +16,16 @@ const FamiliasListaVista = ({
 						{ f.nombreCastellanizado }
 					</h4>
 					<p>
-						agrupaciones: { f.agrupacionesIds.length }
+						#variantes: { f.variantesIds.length }
 					</p>
+					<p>f: { f.familia.nombreOriginario } </p>
 				</Link>
 			</article>
 		)
 	})
 	return <ul className="FamiliaLista">
-		{ familiasElems }
+		{ agrupacionesElems }
 	</ul>
 }
 
-export default FamiliasListaVista;
+export default AgrupacionesListaVista;

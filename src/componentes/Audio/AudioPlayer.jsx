@@ -22,51 +22,60 @@ export default class AudioPlayer extends React.Component {
     );
   }
 }
+//
+//
 //player custom
 export class JPlayer extends React.Component {
-constructor(props) {
-  super(props)
-  this.props = this.props
+
+constructor(song) {
+  this.song = song
+
+}
+
+//
+load() {
+const audioTag = document.createElement('audio')//crea tag audio
+const audioContext = new AudioContext()//crea contexto de audio
+const track = audioContext.createMediaElementSource(audioTag)// pasa el tag al contexto de audio
+let out = ""
+audioTag.setAttribute('src', mp3,)//agrega atributos y pasa el audio
+audioTag.setAttribute('type','audio/mpeg')
+audioTag.setAttribute('className','JPlayerTrack')
+out = track.connect(audioContext.destination)//conecta al output
+
+
+return out
+
+}
+
+play() {
+
+  // if (this.load.state === 'suspended') {
+  //   this.load.resume();
+  //   console.log("Adentro")
+  // }
+
+  //   if (this.dataset.playing === 'false') {
+  //   audioTag.play();
+  //   this.dataset.playing = 'true';
+  // } else if (this.dataset.playing === 'true') {
+  //   audioTag.pause();
+  //   this.dataset.playing = 'false';
+  // }
+
+  return console.log("PLAY")
+
 }
 
 playerHTML() {
-  const audioTag = document.createElement('audio')
-  const audioContext = new AudioContext()//crea contexto de audio
-  const track = audioContext.createMediaElementSource(audioTag)// pasa el tag al contexto de audio
-  const playButton = document.querySelector('button')
-
-  audioTag.setAttribute('src', mp3,)//agrega atributo y pasa el audio
-  audioTag.setAttribute('type','audio/mpeg')
-  audioTag.setAttribute('className','JPlayerTrack')
-  track.connect(audioContext.destination)
-
-// // play event
-// playButton.addEventListener('click', function() {
-// //
-// // revisa si se encuentra en estado de suspencion (autoplay policy)
-// if (audioContext.state === 'suspended') {
-// audioContext.resume();
-// }
-// // play or pause dependiendo del estado
-// if (this.dataset.playing === 'false') {
-// audioTag.play();
-// this.dataset.playing = 'true';
-// } else if (this.dataset.playing === 'true') {
-//   audioTag.pause();
-//   this.dataset.playing = 'false';
-// }
-// }, false)
-console.log(playButton)
 
   return (
     <section>
       <h1>Player custom</h1>
       <div className="JPlayer">
-        {/* play/pause: */}
-        <button data-playing="false" role="switch" aria-checked="false">
-          <span>Play/Pause</span>
+        <button onClick={this.play} data-playing="false" role="switch" aria-checked="false">
+          <span>Play/Stop</span>
         </button>
-        {/*  track: */}
         <span id="Timeline">
           <span id="Loading" />
           <span id="Handle" className="ui-slider-handle" />

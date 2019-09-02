@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import AudioPlayer, {JPlayer} from './AudioPlayer'
+import AudioTarjeta from './AudioTarjeta'
 
 
 export default class Audio extends Component {
@@ -8,8 +9,7 @@ export default class Audio extends Component {
 
     return (
       <section>
-        <AudioPlayer />
-        <JPlayer />
+        <AudioTarjeta />
       </section>
     )
 

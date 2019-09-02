@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -21,30 +22,32 @@ import { ApolloLink } from 'apollo-link'
 
 import { createBrowserHistory } from 'history';
 
-const http = new HttpLink({ uri:  'http://localhost:3000/graphql' })
+const http = new HttpLink({ uri:  'http://localhost:4000/graphql' })
 
 
 const client = new ApolloClient({
-    link: ApolloLink.from([
-        // retryLink,
-        // authLink.concat(http),
-        http
-    ]),
-    // uri: process.env.API_URl,
-    cache: new InMemoryCache()
+	link: ApolloLink.from([
+		// retryLink,
+		// authLink.concat(http),
+		http
+	]),
+	// uri: process.env.API_URl,
+	cache: new InMemoryCache()
 });
 
 
 export const history = createBrowserHistory({
-    basename: process.env.PUBLIC_URL
+	basename: process.env.PUBLIC_URL
 });
 
 
 
 ReactDOM.render((
-    <ApolloProvider client={client} addTypename={false}>
-        <App/>
-    </ApolloProvider>
+	<ApolloProvider client={client} addTypename={false}>
+		<BrowserRouter>
+				<App/>
+		</BrowserRouter>
+	</ApolloProvider>
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

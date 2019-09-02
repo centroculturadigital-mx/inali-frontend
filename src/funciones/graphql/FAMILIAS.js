@@ -3,13 +3,13 @@ import gql from "graphql-tag";
 
 export default gql`
 
-query Familias {
-
-    Familias {
-        id
-        nombreFamilia
-    }
-
+{
+  FamiliaMany {
+    _id
+    nombreOriginario
+    nombreCastellanizado
+    agrupacionesIds
+  }
 }
 
 `

@@ -1,19 +1,36 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import style from './FamiliaDetalle.scss';
-import FamiliaResumen from '../FamiliaResumen/FamiliaResumen';
+const FamiliaDetalleVista = ({
+	_id,
+	nombreOriginario,
+	nombreCastellanizado,
+	agrupaciones
+}) => {
 
-const FamiliaDetalleVista = ({Familias}) => {
-    
-    let FamiliasMostrar = Familias.map(u => (
-        <FamiliaResumen {...u}/>
-    ))
+	let agrupacionesElems = agrupaciones.map((a, i) => {
 
-    return (
-        <ul className="FamiliaDetalle">
-            { FamiliasMostrar }
-        </ul>
-    )
+		return <article key={i}>
+			<Link to={`/agrupaciones/${a._id}`}>
+				{ a.nombreOriginario } - { nombreCastellanizado }
+			</Link>
+		</article>
+
+	})
+
+	return (
+
+		<div className="FamiliaDetalle">
+			{ nombreOriginario } - { nombreCastellanizado }
+			<div>
+				agrupaciones: 
+			</div>
+			<ul>
+				{ agrupacionesElems }
+			</ul>
+		</div>
+
+	)
 
 }
 

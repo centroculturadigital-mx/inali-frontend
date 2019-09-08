@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 //
 const AudioContext = window.AudioContext || window.webkitAudioContext//vintage browsers
 const audioContext = new AudioContext()//crea contexto de audio
+const vol = audioContext.createGain();
 const audioTag = document.createElement('audio')//crea tag audio
 //player custom
 export class JPlayer extends Component {
@@ -9,7 +10,9 @@ export class JPlayer extends Component {
   constructor(props) {
     super(props)
     this.src = this.src
+    this.volumeControl = React.createRef()
     this.playButton = React.createRef()
+    this.volume = this.volume.bind(this)//bind object to method or function
     this.play = this.play.bind(this)//bind object to method or function
   }
 
@@ -19,7 +22,7 @@ export class JPlayer extends Component {
     audioTag.setAttribute('src', this.props.src)//agrega atributos y pasa el audio
     audioTag.setAttribute('type','audio/mpeg')
     audioTag.setAttribute('className','JPlayerTrack')
-    track.connect(audioContext.destination)//conecta al output
+    track.connect(vol).connect(audioContext.destination)//conecta al output
 
   }
   // play(elemento,conexion,contexto,audioelement,fileURL,gain,progressbar) {
@@ -38,13 +41,15 @@ export class JPlayer extends Component {
       button.dataset.playing = 'false'
       console.log("Pausa")
     }
-
   }
 
-  // volume() {
-  //
-  // }
-  //
+  volume() {
+    let currentVal = this.volumeControl.current.valueAsNumber
+    return vol.gain.value = currentVal;
+
+    // return console.log(this.volumeControl.current.valueAsNumber)
+  }
+
   playerHTML() {
 
     return (
@@ -53,13 +58,10 @@ export class JPlayer extends Component {
         <h1>Player custom :</h1>
         <div className="JPlayer">
           <button id="togglePlay" ref={this.playButton} onClick={this.play} data-playing="false" role="switch" aria-checked="false">
-            <span>Play/Stop</span>
+            Play/Stop
           </button>
-          <span id="Timeline">
-            <span id="Loading" />
-            <span id="Handle" className="ui-slider-handle" />
-          </span>
-          <span id="TimeLeft" />
+          <p>Volumen: </p>
+          <input id="volumen" ref={this.volumeControl} onChange={this.volume} type="range" min="0" max="1" step="0.01" />
         </div>
       </section>
     )

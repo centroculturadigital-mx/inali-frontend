@@ -12,8 +12,11 @@ export class JPlayer extends Component {
     this.src = this.src
     this.volumeControl = React.createRef()
     this.playButton = React.createRef()
-    this.volume = this.volume.bind(this)//bind object to method or function
-    this.play = this.play.bind(this)//bind object to method or function
+    this.progressBar = React.createRef()
+    //bind object to method or function
+    this.volume = this.volume.bind(this)
+    this.play = this.play.bind(this)
+    this.seek = this.seek.bind(this)
   }
 
   load() {
@@ -46,8 +49,14 @@ export class JPlayer extends Component {
   volume() {
     let currentVal = this.volumeControl.current.valueAsNumber
     return vol.gain.value = currentVal;
+  }
 
-    // return console.log(this.volumeControl.current.valueAsNumber)
+  seek(e) {
+    let el = this.progressBar.current
+    var percent = el.offsetHeight / el.offsetWidth
+    audioTag.currentTime = percent * audioTag.duration//aplica tiempo seleccionado
+    this.progressBar.current.value = percent * 100
+    return console.log(e)
   }
 
   playerHTML() {
@@ -62,6 +71,8 @@ export class JPlayer extends Component {
           </button>
           <p>Volumen: </p>
           <input id="volumen" ref={this.volumeControl} onChange={this.volume} type="range" min="0" max="1" step="0.01" />
+          <br/>
+          <progress id="progressBar" ref={this.progressBar} onClick={this.seek} min="0" max="100" value="0"></progress>
         </div>
       </section>
     )

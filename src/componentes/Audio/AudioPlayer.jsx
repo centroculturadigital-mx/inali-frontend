@@ -31,6 +31,7 @@ export class JPlayer extends Component {
   // play(elemento,conexion,contexto,audioelement,fileURL,gain,progressbar) {
   play() {
     let button = this.playButton.current
+    let prog
     if (audioContext.state === 'suspended') {
       audioContext.resume()
     }
@@ -38,10 +39,16 @@ export class JPlayer extends Component {
     if (button.dataset.playing === 'false') {
       audioTag.play()
       button.dataset.playing = 'true'
+      prog = setInterval(()=>{//sequencia la barra de progreso
+          console.log('Progress ON');
+          this.progress(this.progressBar.current,audioTag)
+        },1000)
       console.log("play")
     } else if (button.dataset.playing === 'true') {
       audioTag.pause()
       button.dataset.playing = 'false'
+      clearInterval(prog)
+      console.log('Progress OFF');
       console.log("Pausa")
     }
   }
@@ -51,12 +58,19 @@ export class JPlayer extends Component {
     return vol.gain.value = currentVal;
   }
 
-  seek(e) {
+  seek(e) {// componer seek
     let el = this.progressBar.current
-    var percent = el.offsetHeight / el.offsetWidth
+    var percent = el.offsetHeight / el.clientWidth
     audioTag.currentTime = percent * audioTag.duration//aplica tiempo seleccionado
     this.progressBar.current.value = percent * 100
     return console.log(e)
+  }
+
+  progress(progressbar,audioelement) {
+    let long = progressbar.clientWidth
+    let point = audioelement.currentTime / long
+    let res = point*100
+    progressbar.value = res
   }
 
   playerHTML() {

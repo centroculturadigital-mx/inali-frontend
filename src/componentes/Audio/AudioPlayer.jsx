@@ -13,10 +13,14 @@ export class JPlayer extends Component {
     this.volumeControl = React.createRef()
     this.playButton = React.createRef()
     this.progressBar = React.createRef()
-    //bind object to method or function
+    //bind object to method
     this.volume = this.volume.bind(this)
     this.play = this.play.bind(this)
     this.seek = this.seek.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.seek);// evento para el metodo seek()
   }
 
   load() {
@@ -35,14 +39,13 @@ export class JPlayer extends Component {
     if (audioContext.state === 'suspended') {
       audioContext.resume()
     }
-    //
     if (button.dataset.playing === 'false') {
       audioTag.play()
       button.dataset.playing = 'true'
       prog = setInterval(()=>{//sequencia la barra de progreso
-          console.log('Progress ON');
-          this.progress(this.progressBar.current,audioTag)
-        },1000)
+        console.log('Progress ON');
+        this.progress(this.progressBar.current,audioTag)
+      },250)
       console.log("play")
     } else if (button.dataset.playing === 'true') {
       audioTag.pause()
@@ -58,14 +61,6 @@ export class JPlayer extends Component {
     return vol.gain.value = currentVal;
   }
 
-  seek(e) {// componer seek
-    let el = this.progressBar.current
-    var percent = el.offsetHeight / el.clientWidth
-    audioTag.currentTime = percent * audioTag.duration//aplica tiempo seleccionado
-    this.progressBar.current.value = percent * 100
-    return console.log(e)
-  }
-
   progress(progressbar,audioelement) {
     let long = progressbar.clientWidth
     let point = audioelement.currentTime / long
@@ -73,12 +68,20 @@ export class JPlayer extends Component {
     progressbar.value = res
   }
 
+  seek(event) {
+    let bar = this.progressBar.current
+    let percent = event.offsetX / bar.clientWidth
+    event.preventDefault()
+    bar.value = percent*100
+    audioTag.currentTime = percent * audioTag.duration//aplica tiempo seleccionado
+  }
+
   playerHTML() {
 
     return (
       <section>
         {this.load()}
-        <h1>Player custom :</h1>
+        <h1>Track: {this.props.src}</h1>
         <div className="JPlayer">
           <button id="togglePlay" ref={this.playButton} onClick={this.play} data-playing="false" role="switch" aria-checked="false">
             Play/Stop
@@ -86,7 +89,7 @@ export class JPlayer extends Component {
           <p>Volumen: </p>
           <input id="volumen" ref={this.volumeControl} onChange={this.volume} type="range" min="0" max="1" step="0.01" />
           <br/>
-          <progress id="progressBar" ref={this.progressBar} onClick={this.seek} min="0" max="100" value="0"></progress>
+          <progress id="progressBar" ref={this.progressBar} min="0" max="100" value="0"></progress>
         </div>
       </section>
     )
@@ -110,7 +113,7 @@ export default class AudioPlayer extends React.Component {
   render() {
     return (
       <div>
-        <h3>Player Default: </h3>
+        <h3>Track: {this.props.src} </h3>
         <audio id="AudioPlayer" controls>
           <source src={this.props.src} type="audio/mpeg" />
           <source src={this.props.src} type="audio/ogg" />

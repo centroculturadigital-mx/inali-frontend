@@ -15,9 +15,11 @@ export default class AudioTarjeta extends Component {
   render() {
     return (
       <article>
-        <h3>Nombre de canción</h3>
-        <AudioPlayer src={mp3}/>
+        <h3>Custom JS Player</h3>
         <JPlayer src={mp3}/>
+        <hr/>
+        <h3>Player HTML5</h3>
+        <AudioPlayer src={mp3}/>
       </article>
     )
   }

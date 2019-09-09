@@ -20,7 +20,7 @@ export class JPlayer extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.seek);// evento para el metodo seek()
+    this.progressBar.current.addEventListener('click', this.seek);// evento para el metodo seek()
   }
 
   load() {

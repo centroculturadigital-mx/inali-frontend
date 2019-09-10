@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 
-class TextoAnimado extends Component {
+export default class TextoAnimado extends Component {
 
   render() {
     return (
-      <>
-        <path d={this.props.camino} />
-        <text width="500">
-          <textPath alignment-baseline="top" xlink:href="#curve">
+      <svg viewBox="0 0 500 500">
+        <path id="curve" d={this.props.camino} />
+        <text width="500" height="500">
+          <textPath alignmentBaseline="bottom" xlinkHref="#curve">
             Dangerous Curves Ahead
           </textPath>
         </text>
-      </>
+      </svg>
     )
   }
 }

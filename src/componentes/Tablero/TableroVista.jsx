@@ -22,13 +22,11 @@ export default (props) => {
    // const path = puntosXYaComandosSVG(puntos,true,false)
   return (
     <section className="Tablero">
-      <svg viewBox="0 0 500 500">
         <TextoAnimado texto="Hola amigoooos" camino='M100,250 C100,100 400,100 400,250'/>
         {/*
           <TextoAnimado texto="Hola amigoooos" camino={curvas}/>
           <TextoAnimado texto="Hola amigoooos" camino={lineas}/>
         */}
-      </svg>
     </section>
   )
 }

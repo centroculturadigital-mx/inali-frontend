@@ -9,7 +9,7 @@ import VariantesLista from './componentes/Variante/VariantesLista/VariantesLista
 import VarianteDetalle from './componentes/Variante/VarianteDetalle/VarianteDetalle';
 //
 import Audio from './componentes/Audio/Audio'
-
+import Tablero from './componentes/Tablero/Tablero'
 
 const App = () => {
 
@@ -20,6 +20,7 @@ const App = () => {
         <Link to="/agrupaciones">Agrupaciones</Link>
         <Link to="/variantes">Variantes</Link>
         <Link to="/audio">Audio Demo</Link>
+        <Link to="/tablero">Tablero</Link>
       </header>
       <Switch>
         <Route path="/familias/:id" component={FamiliaDetalle}/>
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/variantes/:id" component={VarianteDetalle}/>
         <Route path="/variantes" component={VariantesLista}/>
         <Route path="/audio" component={Audio}/>
+        <Route path="/tablero" component={Tablero}/>
       </Switch>
     </div>
   );

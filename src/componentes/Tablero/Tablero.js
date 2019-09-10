@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import TableroVista from './TableroVista'
 
 export default class Tablero extends Component {
 
@@ -6,8 +7,8 @@ export default class Tablero extends Component {
     super(props)
 
   }
-  
-  reander() {
+
+  render() {
     return (
       <TableroVista />
     )

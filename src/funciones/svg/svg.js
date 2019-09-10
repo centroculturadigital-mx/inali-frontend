@@ -1,5 +1,5 @@
 
-const dePuntoALinea (punto, i, a) => `L ${punto[0]} ${punto[1]}`
+const dePuntoALinea = (punto, i, a) => `L ${punto[0]} ${punto[1]}`
 
 
 const puntosXYaComandosSVG = (puntos, command = dePuntoALinea) => {
@@ -15,12 +15,12 @@ const puntosXYaComandosSVG = (puntos, command = dePuntoALinea) => {
 const puntosALineas = (puntos) => {
   return puntosXYaComandosSVG(puntos, dePuntoALinea)
 }
-
+//
 const puntosACurvas = (puntos) => {
-  return puntosXYaComandosSVG(puntos, dePuntoACurva)
+  return null
 }
 
 export {
   puntosALineas,
-  // puntosACurvas
+  puntosACurvas
 }

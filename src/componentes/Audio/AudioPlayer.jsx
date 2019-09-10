@@ -17,10 +17,18 @@ export class JPlayer extends Component {
     this.volume = this.volume.bind(this)
     this.play = this.play.bind(this)
     this.seek = this.seek.bind(this)
+    this.end = this.end.bind(this)
   }
 
   componentDidMount() {
-    this.progressBar.current.addEventListener('click', this.seek);// evento para el metodo seek()
+    this.progressBar.current.addEventListener('click', this.seek)// evento para el metodo seek()
+    audioTag.addEventListener('ended',this.end)//callback al finalizar
+  }
+
+  end(event) {
+    this.playButton.current.dataset.playing = 'false'
+    clearInterval()
+    console.log("Fin track: " + event.target)
   }
 
   load() {
@@ -32,25 +40,25 @@ export class JPlayer extends Component {
     track.connect(vol).connect(audioContext.destination)//conecta al output
 
   }
-  // play(elemento,conexion,contexto,audioelement,fileURL,gain,progressbar) {
+
   play() {
     let button = this.playButton.current
-    let prog
+    let prog = setInterval(() => {//sequencia la barra de progreso
+      console.log('Progress ON');
+      this.progress(this.progressBar.current,audioTag)
+    },350)
     if (audioContext.state === 'suspended') {
       audioContext.resume()
     }
     if (button.dataset.playing === 'false') {
+      console.log(prog);
       audioTag.play()
       button.dataset.playing = 'true'
-      prog = setInterval(()=>{//sequencia la barra de progreso
-        console.log('Progress ON');
-        this.progress(this.progressBar.current,audioTag)
-      },250)
       console.log("play")
     } else if (button.dataset.playing === 'true') {
+      clearInterval(prog)
       audioTag.pause()
       button.dataset.playing = 'false'
-      clearInterval(prog)
       console.log('Progress OFF');
       console.log("Pausa")
     }
@@ -64,7 +72,7 @@ export class JPlayer extends Component {
   progress(progressbar,audioelement) {
     let long = progressbar.clientWidth
     let point = audioelement.currentTime / long
-    let res = point*100
+    let res = (point*100)-2
     progressbar.value = res
   }
 
@@ -84,16 +92,17 @@ export class JPlayer extends Component {
         <h1>Track: {this.props.src}</h1>
         <div className="JPlayer">
           <button id="togglePlay" ref={this.playButton} onClick={this.play} data-playing="false" role="switch" aria-checked="false">
-            Play/Stop
+            Play/Pausa
           </button>
           <p>Volumen: </p>
           <input id="volumen" ref={this.volumeControl} onChange={this.volume} type="range" min="0" max="1" step="0.01" />
           <br/>
-          <progress id="progressBar" ref={this.progressBar} min="0" max="100" value="0"></progress>
+          <progress id="progressBar" ref={this.progressBar} min="0" max="100" value=""></progress>
         </div>
       </section>
     )
   }
+  //<meter id="progressBar" ref={this.progressBar} min="0" max="100" value="0"><///meter>
 
   //
   render() {
